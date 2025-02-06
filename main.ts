@@ -81,6 +81,7 @@ while (true) {
 		}
 	} catch (error) {
 		console.log(`Since an error was thrown, the current IP didn't update. Tying again later...`);
+		console.log(error);
 	}
 
 	await sleep(60, 'seconds');
