@@ -58,7 +58,12 @@ In order to run the fixer via docker, you need to mount your `transip.key` file 
 container. You can run the script with the following command:
 
 ```shell
-todo
+docker run -ti \
+	--detach \
+	--restart unless-stopped \
+	--volume ./records.json:/opt/futureportal/transip-dynamic-ip-fixer/records.json \
+	--volume ./transip.key:/opt/futureportal/transip-dynamic-ip-fixer/transip.key \
+	futureportal/transip-dynamic-ip-fixer:latest
 ```
 
 ### Docker compose
@@ -72,7 +77,23 @@ In order to run the fixer via docker compose, you need the following files in th
 The docker compose should contain:
 
 ```yml
-todo
+services:
+    transip-dynamic-ip-fixer:
+        image: futureportal/transip-dynamic-ip-fixer:latest
+        restart: unless-stopped
+        volumes:
+            - ./records.json:/opt/futureportal/transip-dynamic-ip-fixer/records.json
+            - ./transip.key:/opt/futureportal/transip-dynamic-ip-fixer/transip.key
 ```
 
 Run `docker compose up --detach` to start the script.
+
+## Development
+
+Run `./Taskfile` to see the available development commands. You need to have `deno` installed locally.
+
+# Contributors
+
+A big thanks to all the contributors!
+
+![contributor avatars](https://contrib.rocks/image?repo=FuturePortal/transip-dynamic-ip-fixer)

@@ -66,18 +66,21 @@ function project:checkout-pr {
 # =========================================================
 
 function task:build { ## Build the production container
-	title "Custom function"
-	echo -e "${YELLOW}Add your custom sections here${RESET}";
+	title "Buidling latest container"
+	docker build --tag futureportal/transip-dynamic-ip-fixer:latest .
 }
 
-function task:production { ## Run the production container
-	title "Custom function"
-	echo -e "${YELLOW}Add your custom sections here${RESET}";
+function task:latest { ## Run the latest production container
+	title "Running latest container"
+	docker run --rm -ti \
+		--volume ./records.json:/opt/futureportal/transip-dynamic-ip-fixer/records.json \
+		--volume ./transip.key:/opt/futureportal/transip-dynamic-ip-fixer/transip.key \
+		futureportal/transip-dynamic-ip-fixer:latest
 }
 
 function task:publish { ## Publish the production container to the docker hub
-	title "Custom function"
-	echo -e "${YELLOW}Add your custom sections here${RESET}";
+	title "Pushing latest container"
+	docker push futureportal/transip-dynamic-ip-fixer:latest
 }
 
 # =========================================================

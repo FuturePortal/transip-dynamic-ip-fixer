@@ -1,9 +1,7 @@
 FROM denoland/deno:latest AS base
 
-WORKDIR /opt/futureportal/transip-ddns-fixer
+WORKDIR /opt/futureportal/transip-dynamic-ip-fixer
 
-COPY . /opt/futureportal/transip-ddns-fixer
-
-EXPOSE 8000
+COPY . /opt/futureportal/transip-dynamic-ip-fixer
 
 CMD ["run", "-A", "main.ts"]
