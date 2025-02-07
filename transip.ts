@@ -11,12 +11,12 @@ export const getApiKey = async (transIpKey: string): Promise<string> => {
 	const nonce = crypto.randomBytes(10).toString('hex');
 
 	const request = {
-		'login': 'rvanderstaaij',
+		login: 'rvanderstaaij',
 		nonce,
-		'read_only': false,
-		'expiration_time': '50 seconds',
-		'label': `TransIP DDNS fixer`,
-		'global_key': true,
+		read_only: false,
+		expiration_time: '50 seconds',
+		label: `Dynamic IP fixer`,
+		global_key: true,
 	};
 
 	const requestString = JSON.stringify(request);
