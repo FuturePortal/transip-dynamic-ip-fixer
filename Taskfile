@@ -24,7 +24,7 @@ function task:init { ## Initialise the project for local development
 
 function task:start { ## Start the project in development mode
 	title "Run development application"
-	deno run -A --watch main.ts
+	deno run -A --env-file --watch main.ts
 }
 
 function task:update { ## Update all dependencies and files

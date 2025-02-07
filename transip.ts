@@ -11,7 +11,7 @@ export const getApiKey = async (transIpKey: string): Promise<string> => {
 	const nonce = crypto.randomBytes(10).toString('hex');
 
 	const request = {
-		login: 'rvanderstaaij',
+		login: Deno.env.get('TRANSIP_USERNAME')!,
 		nonce,
 		read_only: false,
 		expiration_time: '50 seconds',

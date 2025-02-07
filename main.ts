@@ -1,28 +1,11 @@
 import { DnsRecord, getApiKey, getDns, setDnsRecord } from './transip.ts';
 import { sleep } from './sleep.ts';
 import { getCurrentIP } from './ipify.ts';
+import {startupChecks} from "./startup.ts";
 
 console.log('%c=== TransIP dynamic IP fixer ===', 'color: blue');
 
-console.log('Checking if required files are present...');
-
-try {
-	await Deno.lstat('./transip.key');
-	console.log('Found %cTransIP key%c file, good to proceed.', 'color: green', 'color: initial');
-} catch (_error) {
-	console.log('Missing %c./transip.key%c file, create it in your TransIP dashboard.', 'color: red', 'color: initial');
-	Deno.exit(1);
-}
-
-try {
-	await Deno.lstat('./records.json');
-	console.log('Found %cDNS records%c file, good to proceed.', 'color: green', 'color: initial');
-} catch (_error) {
-	console.log('Missing %c./records.json%c check the README how to create one.', 'color: red', 'color: initial');
-	Deno.exit(1);
-}
-
-// TODO: validate records
+await startupChecks();
 
 const watchDnsRecords: { domain: string; name: string; expire: number; type: string }[] = JSON.parse(
 	Deno.readTextFileSync('./records.json'),

@@ -49,8 +49,10 @@ There are multiple ways to run the fixer.
 
 ### Deno (source files)
 
-Download this repository to your machine. Add the `transip.key` file and `records.json` to the same folder as the
-`main.ts` file. Then run `deno run -A main.ts` to run the fixer script.
+1. Download this repository to your machine
+1. Add the `transip.key` file and `records.json` to the same folder as the `main.ts` file
+1. Create a `.env` file that holds: `TRANSIP_USERNAME=myusername`
+1. Then run `deno run -A --env-file main.ts` to run the fixer script.
 
 ### Docker
 
@@ -62,6 +64,7 @@ docker run -ti \
 	--detach \
 	--restart unless-stopped \
 	--env TZ="europe/amsterdam" \
+	--env TRANSIP_USERNAME="myusername" \
 	--volume ./records.json:/opt/futureportal/transip-dynamic-ip-fixer/records.json \
 	--volume ./transip.key:/opt/futureportal/transip-dynamic-ip-fixer/transip.key \
 	futureportal/transip-dynamic-ip-fixer:latest
@@ -82,9 +85,10 @@ services:
     transip-dynamic-ip-fixer:
         image: futureportal/transip-dynamic-ip-fixer:latest
         restart: unless-stopped
-		environment:
-			TZ: 'Europe/Amsterdam'
-		volumes:
+        environment:
+            TZ: 'Europe/Amsterdam'
+            TRANSIP_USERNAME: 'myusername'
+        volumes:
             - ./records.json:/opt/futureportal/transip-dynamic-ip-fixer/records.json
             - ./transip.key:/opt/futureportal/transip-dynamic-ip-fixer/transip.key
 ```
