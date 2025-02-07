@@ -61,6 +61,7 @@ container. You can run the script with the following command:
 docker run -ti \
 	--detach \
 	--restart unless-stopped \
+	--env TZ="europe/amsterdam" \
 	--volume ./records.json:/opt/futureportal/transip-dynamic-ip-fixer/records.json \
 	--volume ./transip.key:/opt/futureportal/transip-dynamic-ip-fixer/transip.key \
 	futureportal/transip-dynamic-ip-fixer:latest
@@ -81,7 +82,9 @@ services:
     transip-dynamic-ip-fixer:
         image: futureportal/transip-dynamic-ip-fixer:latest
         restart: unless-stopped
-        volumes:
+		environment:
+			TZ: 'Europe/Amsterdam'
+		volumes:
             - ./records.json:/opt/futureportal/transip-dynamic-ip-fixer/records.json
             - ./transip.key:/opt/futureportal/transip-dynamic-ip-fixer/transip.key
 ```

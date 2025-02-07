@@ -2,7 +2,7 @@ import { DnsRecord, getApiKey, getDns, setDnsRecord } from './transip.ts';
 import { sleep } from './sleep.ts';
 import { getCurrentIP } from './ipify.ts';
 
-console.log('%cTransIP DDNS fixer', 'color: blue');
+console.log('%c=== TransIP dynamic IP fixer ===', 'color: blue');
 
 console.log('Checking if required files are present...');
 
